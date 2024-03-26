@@ -6,9 +6,23 @@ const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
 // pull practice
 app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 24 * 60 * 60 * 1000,
+    },
+  })
+);
 
+const passport = require("./middleware/passport");
 app.use(express.urlencoded({ extended: false }));
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(ejsLayouts);
 
 app.set("view engine", "ejs");
