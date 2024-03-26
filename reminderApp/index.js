@@ -20,6 +20,7 @@ app.use(
 );
 
 const passport = require("./middleware/passport");
+
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -42,7 +43,17 @@ app.get("/register", authController.register);
 app.get("/login", authController.login);
 app.post("/register", authController.registerSubmit);
 app.post("/login", authController.loginSubmit);
+app.use((req, res, next) => {
+  console.log(`User details are: `);
+  console.log(req.user);
 
+  console.log("Entire session object:");
+  console.log(req.session);
+
+  console.log(`Session details are: `);
+  console.log(req.session.passport);
+  next();
+});
 app.listen(3001, function () {
   console.log(
     "Server running. Visit: http://localhost:3001/reminders in your browser 🚀"
