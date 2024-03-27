@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const session = require("express-session");
 const ejsLayouts = require("express-ejs-layouts");
 const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
