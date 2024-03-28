@@ -1,8 +1,8 @@
-let database = require("../database");
+let database = require("../models/userModel");
 
-let remindersController = {
+let reminderController = {
   list: (req, res) => {
-    res.render("reminder/index", { reminders: database.cindy.reminders });
+    res.render("reminder/index", { reminder: req.user.reminder });
   },
 
   new: (req, res) => {
@@ -11,30 +11,30 @@ let remindersController = {
 
   listOne: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = database.cindy.reminders.find(function (reminder) {
+    let searchResult = req.user.reminder.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     if (searchResult != undefined) {
       res.render("reminder/single-reminder", { reminderItem: searchResult });
     } else {
-      res.render("reminder/index", { reminders: database.cindy.reminders });
+      res.render("reminder/index", { reminder: req.user.reminder });
     }
   },
 
   create: (req, res) => {
     let reminder = {
-      id: database.cindy.reminders.length + 1,
+      id: req.user.reminder.length + 1,
       title: req.body.title,
       description: req.body.description,
       completed: false,
     };
-    database.cindy.reminders.push(reminder);
-    res.redirect("/reminders");
+    req.user.reminder.push(reminder);
+    res.redirect("/reminder");
   },
 
   edit: (req, res) => {
     let reminderToFind = req.params.id;
-    let searchResult = database.cindy.reminders.find(function (reminder) {
+    let searchResult = req.user.reminder.find(function (reminder) {
       return reminder.id == reminderToFind;
     });
     res.render("reminder/edit", { reminderItem: searchResult });
@@ -48,18 +48,18 @@ let remindersController = {
     // implementation here 👈
     // xinyu's solution Mar. 26
     let reminderToDelete = req.params.id;
-    let searchResult = database.cindy.reminders.find(function (reminder) {
+    let searchResult = req.user.reminder.find(function (reminder) {
       return reminder.id == reminderToDelete;
     });
     // find the index of the element to be removed
-    index = database.cindy.reminders.indexOf(searchResult); 
+    index = req.user.reminder.indexOf(searchResult);
     console.log(index); // for debugging puposes
     // remove the element, with the index, without leftover empty space
-    database.cindy.reminders.splice(index, 1) 
-    console.log(database.cindy.reminders); // for debugging puposes
-    res.redirect("/reminders");
+    req.user.reminder.splice(index, 1);
+    console.log(req.user.reminder); // for debugging puposes
+    res.redirect("/reminder");
     // end of xinyu's solution Mar. 26
   },
 };
 
-module.exports = remindersController;
+module.exports = reminder_Controller;
