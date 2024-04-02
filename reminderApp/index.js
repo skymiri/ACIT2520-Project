@@ -22,9 +22,9 @@ app.use(
 
 const passport = require("./middleware/passport");
 
-app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.urlencoded({ extended: true }));
 app.use(ejsLayouts);
 
 app.set("view engine", "ejs");
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/reminders", reminderController.list);
+app.get("/reminder", reminderController.list);
 app.get("/reminder/new", reminderController.new);
 app.get("/reminder/:id", reminderController.listOne);
 app.get("/reminder/:id/edit", reminderController.edit);
@@ -49,12 +49,14 @@ app.post("/reminder/delete/:id", reminderController.delete);
 // 👌 Ignore for now
 app.get("/register", authController.register);
 app.get("/login", authController.login);
-// app.post("/register", authController.registerSubmit);
 
-app.post("/login", authController.loginSubmit);
-app.get("/login", (req, res) => {
-  res.render("/login", { isAuthenticated: req.isAuthenticated() });
-});
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+  })
+);
 
 app.use((req, res, next) => {
   console.log(`User details are: `);
@@ -69,6 +71,6 @@ app.use((req, res, next) => {
 });
 app.listen(3001, function () {
   console.log(
-    "Server running. Visit: http://localhost:3001/reminders in your browser 🚀"
+    "Server running. Visit: http://localhost:3001/ in your browser 🚀"
   );
 });
