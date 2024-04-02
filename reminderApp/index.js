@@ -49,7 +49,7 @@ app.post("/reminder/delete/:id", reminderController.delete);
 // 👌 Ignore for now
 app.get("/register", authController.register);
 app.get("/login", authController.login);
-app.post("/register", authController.registerSubmit);
+// app.post("/register", authController.registerSubmit);
 app.post("/login", authController.loginSubmit);
 app.use((req, res, next) => {
   console.log(`User details are: `);
