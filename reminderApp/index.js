@@ -50,7 +50,12 @@ app.post("/reminder/delete/:id", reminderController.delete);
 app.get("/register", authController.register);
 app.get("/login", authController.login);
 // app.post("/register", authController.registerSubmit);
+
 app.post("/login", authController.loginSubmit);
+app.get("/login", (req, res) => {
+  res.render("/login", { isAuthenticated: req.isAuthenticated() });
+});
+
 app.use((req, res, next) => {
   console.log(`User details are: `);
   console.log(req.user);

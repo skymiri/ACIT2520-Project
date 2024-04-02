@@ -14,18 +14,21 @@ let authController = {
 
   loginSubmit: (req, res) => {
     // implement later
-    const { email, password } = req.body;
-    let user = userController.getUserByEmailIdAndPassword(email, password);
-    if (user) {
-      req.session.user = user;
-      res.redirect("/reminder");
-    } else {
-      console.log(err);
-      res.render("auth/login", { error: "Invalid email or password" });
+    const email = req.body.email;
+    const password = req.body.password;
+    try {
+      let user = userController.getUserByEmailIdAndPassword(email, password);
+      if (user) {
+        req.session.user = user;
+        res.redirect("/reminder");
+      } else {
+        res.render("auth/login", { error: "Invalid email or password" });
+      }
+    } catch (error) {
+      res.render("auth/login", { error: error.message });
     }
   },
 };
-
 //   registerSubmit: (req, res) => {
 //     // implement later
 //   },
