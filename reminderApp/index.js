@@ -3,11 +3,10 @@ const app = express();
 const path = require("path");
 const session = require("express-session");
 const ejsLayouts = require("express-ejs-layouts");
+const reminderController = require("./controller/reminder_controller");
 const authController = require("./controller/auth_controller");
-
-app.set("view engine", "ejs");
+// pull practice
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use(
   session({
     secret: "secret",
@@ -22,13 +21,13 @@ app.use(
 );
 
 const passport = require("./middleware/passport");
-const authRoute = require("./routes/authRoute");
-const indexRoute = require("./routes/indexRoute");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(ejsLayouts);
+
+app.set("view engine", "ejs");
 
 // Routes start here
 app.use((req, res, next) => {
@@ -52,7 +51,6 @@ app.get("/register", authController.register);
 app.get("/login", authController.login);
 app.post("/register", authController.registerSubmit);
 app.post("/login", authController.loginSubmit);
-
 app.use((req, res, next) => {
   console.log(`User details are: `);
   console.log(req.user);
@@ -64,7 +62,6 @@ app.use((req, res, next) => {
   console.log(req.session.passport);
   next();
 });
-
 app.listen(3001, function () {
   console.log(
     "Server running. Visit: http://localhost:3001/reminders in your browser 🚀"
