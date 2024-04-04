@@ -1,11 +1,9 @@
-let database = require("../database");
+let database = require("../models/userModel");
 
 let remindersController = {
   // get
   list: (req, res) => {
-    res.render("reminder/index", {
-      reminders: req.user.reminders,
-    });
+    res.render("reminder/index", { reminders: req.user.reminders });
   },
 
   // get
