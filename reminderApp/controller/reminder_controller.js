@@ -29,7 +29,7 @@ let reminderController = {
       completed: false,
     };
     req.user.reminder.push(reminder);
-    res.redirect("/reminder");
+    res.redirect("/reminder/single-reminder");
   },
 
   edit: (req, res) => {
@@ -50,7 +50,7 @@ let reminderController = {
       req.user.reminder[index].title = req.body.title;
       req.user.reminder[index].description = req.body.description;
       req.user.reminder[index].completed = req.body.completed === "true";
-      res.redirect("/reminder");
+      res.redirect("/reminder/");
     } else {
       res.status(404).send("Can't find reminder.");
     }
