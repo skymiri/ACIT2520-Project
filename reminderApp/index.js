@@ -31,15 +31,21 @@ app.use(passport.session());
 app.use(ejsLayouts);
 
 // Routes start here
-// app.use((req, res, next) => {
-//   res.locals.isAuthenticated = req.isAuthenticated
-//     ? req.isAuthenticated()
-//     : false;
-//   next();
-// });
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.isAuthenticated
+    ? req.isAuthenticated()
+    : false;
+  next();
+});
 
-app.use("/", indexRoute);
-app.use("/auth", authRoute);
+app.get("/reminders", reminderController.list);
+app.get("/reminder/new", reminderController.new);
+app.get("/reminder/:id", reminderController.listOne);
+app.get("/reminder/:id/edit", reminderController.edit);
+app.post("/reminder/", reminderController.create);
+// ⭐ Implement these two routes below!
+app.post("/reminder/update/:id", reminderController.update);
+app.post("/reminder/delete/:id", reminderController.delete);
 
 // 👌 Ignore for now
 app.get("/register", authController.register);
