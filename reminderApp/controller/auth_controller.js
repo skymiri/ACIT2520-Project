@@ -1,11 +1,18 @@
 const express = require("express");
-let database = require("../models/userModel");
+let database = require("../database");
 const userModel = require("../models/userModel").userModel;
 const userController = require("./userController");
 
 let authController = {
   login: (req, res) => {
-    res.render("auth/login");
+    res.render("auth/login", {
+      isAuthenticated: req.isAuthenticated,
+    });
+  },
+
+  logout: (req, res) => {
+    req.logout();
+    res.redirect("/");
   },
 
   register: (req, res) => {

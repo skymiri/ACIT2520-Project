@@ -1,8 +1,11 @@
-let database = require("../models/userModel");
+let database = require("../database");
 
 let reminderController = {
   list: (req, res) => {
-    res.render("reminder/index", { reminder: req.user.reminder });
+    res.render("reminder", {
+      reminder: req.user.reminder,
+      name: req.user.name,
+    });
   },
 
   new: (req, res) => {
@@ -15,9 +18,14 @@ let reminderController = {
       return reminder.id == reminderToFind;
     });
     if (searchResult != undefined) {
-      res.render("reminder/single-reminder", { reminderItem: searchResult });
+      res.render("reminder/single-reminder", {
+        reminderItem: searchResult,
+      });
     } else {
-      res.render("reminder/index", { reminder: req.user.reminder });
+      res.render("reminder", {
+        reminder: req.user.reminder,
+        name: req.user.name,
+      });
     }
   },
 
@@ -29,7 +37,7 @@ let reminderController = {
       completed: false,
     };
     req.user.reminder.push(reminder);
-    res.redirect("/reminder/single-reminder");
+    res.redirect("/reminder");
   },
 
   edit: (req, res) => {
@@ -87,5 +95,5 @@ let reminderController = {
 //     // end of xinyu's solution Mar. 26
 //   },
 // };
-console.log(reminderController);
+// console.log(reminderController);
 module.exports = reminderController;
