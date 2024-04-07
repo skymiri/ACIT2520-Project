@@ -26,7 +26,7 @@
                         </td>
                         <% } else { %>
                             <td style="vertical-align: middle;">
-                                <a href="/session/<%= session %>">
+                                <a href="/session/<%= session %>" onclick="return confirm('Are you sure to delete?')">
                                     <span>Revoke Session</span>
                                 </a>
                             </td>
