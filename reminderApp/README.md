@@ -40,3 +40,5 @@
 
 1. Update Login functionality
 2. Add Logout
+3. Add Admin ability
+4. Create admin page
