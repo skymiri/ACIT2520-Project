@@ -2,9 +2,34 @@ let database = require("../database");
 
 let reminderController = {
   list: (req, res) => {
-    res.render("reminder", {
-      reminder: req.user.reminder,
-      name: req.user.name,
+    if (req.user.role === "admin") {
+      const store = req.sessionStore;
+      store.all((err, sessions) => {
+        res.render("admin", {
+          user: req.user,
+          sessions: sessions,
+          role: req.user.role,
+        });
+      });
+    } else {
+      res.render("reminder", {
+        reminder: req.user.reminder,
+        name: req.user.name,
+      });
+    }
+  },
+
+  destroy: (req, res) => {
+    const store = req.sessionStore;
+    const sid = req.params.id;
+
+    store.destroy(sid, (err) => {
+      res.clearCookie(sid);
+    });
+
+    store.all((err, sessions) => {
+      console.log(sessions);
+      res.redirect("/reminder");
     });
   },
 
