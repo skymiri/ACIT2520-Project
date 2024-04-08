@@ -42,3 +42,4 @@
 2. Add Logout
 3. Add Admin ability
 4. Create admin page
+5. Update the navigation of index page to show the changes when logging in
