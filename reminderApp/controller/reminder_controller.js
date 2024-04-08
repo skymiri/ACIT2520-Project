@@ -1,6 +1,10 @@
 let database = require("../database");
 
 let reminderController = {
+  home: (req, res) => {
+    res.render("index");
+  },
+
   list: (req, res) => {
     if (req.user.role === "admin") {
       const store = req.sessionStore;

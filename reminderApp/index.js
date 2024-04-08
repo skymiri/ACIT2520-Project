@@ -7,7 +7,7 @@ const authController = require("./controller/auth_controller");
 
 // pull practice
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname)));
 app.use(
   session({
     secret: "secret",
@@ -35,11 +35,6 @@ app.use(ejsLayouts);
 //   res.locals.isAuthenticated = req.isAuthenticated
 //     ? req.isAuthenticated()
 //     : false;
-//   next();
-// });
-
-// app.use((req, res, next) => {
-//   res.locals.isAuthenticated = req.isAuthenticated;
 //   next();
 // });
 

@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { ensureAuthenticated } = require("../middleware/checkAuth");
+const {
+  ensureAuthenticated,
+  forwardAuthenticated,
+} = require("../middleware/checkAuth");
 const reminderController = require("../controller/reminder_controller");
 
-router.get("/", (req, res) => {
-  res.render("index");
-});
+router.get("/", forwardAuthenticated, reminderController.home);
+router.get("/reminder/home", ensureAuthenticated, reminderController.home);
 
 router.get("/reminder", ensureAuthenticated, reminderController.list);
 router.get("/reminder/new", ensureAuthenticated, reminderController.new);
