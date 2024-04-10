@@ -14,7 +14,7 @@
 
 #### Xinyu
 
-1. <Insert Some Task Here> - This task is responsible for xyz functionality.
+1. install an delete function (only works with cindy...)
 
 #### Yang
 
@@ -34,7 +34,8 @@
 
 #### Xinyu
 
-1. <Insert Some Task Here> - This task is responsible for xyz functionality.
+1. install an update function (only works with cindy...)
+2. watch 2 hours videos from class about project
 
 #### Yang
 
@@ -43,3 +44,7 @@
 3. Add Admin ability
 4. Create admin page
 5. Update the navigation of index page to show the changes when logging in
+
+#### 3nd week (April 9nd - April 15th) 🚀
+#### Xinyu
+1. upload snippies from class for bonus

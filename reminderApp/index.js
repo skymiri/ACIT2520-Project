@@ -57,6 +57,18 @@ app.get("/login", authController.login);
 //   next();
 // });
 
+// code for BONUS
+//next we need oauth token and change views
+// const fetch = require("node-fetch")
+// async function keywordToImage(keyword) {
+//     const url = `https://api.unsplash.com/search/photos?page=1&query=${keyword}`;
+//     // console.log(url)
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     console.log(data)
+//     // return imageUrl;
+// }
+
 app.listen(3001, function () {
   console.log(
     "Server running. Visit: http://localhost:3001/ in your browser 🚀"
