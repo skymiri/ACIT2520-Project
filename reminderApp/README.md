@@ -46,5 +46,11 @@
 5. Update the navigation of index page to show the changes when logging in
 
 #### 3nd week (April 9nd - April 15th) 🚀
+
 #### Xinyu
+
 1. upload snippies from class for bonus
+
+#### Yang
+
+1. Update Bonus functionality (create a reminder with banner)
