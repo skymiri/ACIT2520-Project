@@ -1,5 +1,21 @@
 let database = require("../database");
 
+// function for create reminder with banner(img from unsplash)
+// unsplash - https://unsplash.com/documentation#search-photos
+// www.npmjs.com/package/node-fetch
+const keywordToImage = async (keyword) => {
+  const accessKey = "M01LaaSpas4tFHmQSAGTHjq7_7KzSIG77Pvhq9pfj_A";
+  const url = `https://api.unsplash.com/search/photos?page=1&query=${keyword}&client_id=${accessKey}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+  const randomImg = Math.floor(Math.random() * data.results.length);
+  if (data.results && data.results.length > 0) {
+    const imageUrl = data.results[randomImg].urls.full;
+    return imageUrl;
+  }
+};
+
 let reminderController = {
   home: (req, res) => {
     res.render("index");
@@ -58,12 +74,27 @@ let reminderController = {
     }
   },
 
-  create: (req, res) => {
+  // create: (req, res) => {
+  //   let reminder = {
+  //     id: req.user.reminder.length + 1,
+  //     title: req.body.title,
+  //     description: req.body.description,
+  //     completed: false,
+  //   };
+  //   req.user.reminder.push(reminder);
+  //   res.redirect("/reminder");
+  // },
+
+  // create reminder with banner
+  create: async (req, res) => {
+    let imgUrl = await keywordToImage(req.body.keyword);
     let reminder = {
       id: req.user.reminder.length + 1,
       title: req.body.title,
       description: req.body.description,
       completed: false,
+      keyword: req.body.keyword,
+      banner: imgUrl,
     };
     req.user.reminder.push(reminder);
     res.redirect("/reminder");
@@ -77,17 +108,22 @@ let reminderController = {
     res.render("reminder/edit", { reminderItem: searchResult });
   },
 
-  update: (req, res) => {
+  update: async (req, res) => {
     let reminderId = req.params.id;
     let index = req.user.reminder.findIndex(
       (reminder) => reminder.id == reminderId
     );
 
+    let imgUrl = await keywordToImage(req.body.keyword);
+    // console.log(imgUrl);
     if (index !== -1) {
       req.user.reminder[index].title = req.body.title;
       req.user.reminder[index].description = req.body.description;
       req.user.reminder[index].completed = req.body.completed === "true";
-      res.redirect("/reminder/");
+      req.user.reminder[index].keyword = req.body.keyword;
+      req.user.reminder[index].banner = imgUrl;
+
+      res.redirect(`/reminder/${reminderId}`);
     } else {
       res.status(404).send("Can't find reminder.");
     }

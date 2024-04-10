@@ -10,7 +10,12 @@
       <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Description" name="description">
 <%= reminderItem.description %></textarea>
     </div>
-
+    <div>
+      <label for="description">Keyword for Banner</label>
+      <input type="text" class="form-control" id="keywordInput" placeholder="Keyword" name="keyword"
+        value="<%= reminderItem.keyword %>" />
+    </div>
+    <br>
     <div class="form-group">
       <label for="completed">Completed</label>
       <div class="radio">

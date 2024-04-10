@@ -1,4 +1,5 @@
 <div class="container">
+
   <form action="/reminder" method="POST">
     <div class="form-group">
       <label for="title">Title</label>
@@ -9,6 +10,11 @@
       <textarea class="form-control" id="descriptionInput" rows="3" placeholder="Description"
         name="description"></textarea>
     </div>
+    <div>
+      <label for="description">Keyword for Banner</label>
+      <input type="text" class="form-control" id="keywordInput" placeholder="Keyword" name="keyword">
+    </div>
+    <br>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>
