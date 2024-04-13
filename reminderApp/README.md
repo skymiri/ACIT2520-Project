@@ -26,7 +26,7 @@
 
 #### John
 
-1. <Insert Some Task Here> - This task is responsible for xyz functionality.
+1. modified the admin.ejs page to properly identify admins.
 
 #### Sky
 
