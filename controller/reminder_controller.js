@@ -1,5 +1,3 @@
-let database = require("../database");
-
 // function for create reminder with banner(img from unsplash)
 // unsplash - https://unsplash.com/documentation#search-photos
 // www.npmjs.com/package/node-fetch

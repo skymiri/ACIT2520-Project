@@ -21,10 +21,19 @@ router.post(
   })
 );
 
+// router.post(
+//   "/login",
+//   passport.authenticate("local"),
+//   authController.loginSubmit
+// );
+
 router.get("/logout", (req, res) => {
   req.logout(() => {
     res.redirect("/auth/login");
   });
 });
+
+router.get("/register", forwardAuthenticated, authController.register);
+router.post("/register", forwardAuthenticated, authController.registerSubmit);
 
 module.exports = router;
