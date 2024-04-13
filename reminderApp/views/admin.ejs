@@ -12,15 +12,12 @@
             </tr>
         </thead>
         <tbody>
-            <pre><%= JSON.stringify(sessions) %></pre>
-            <pre><%= JSON.stringify(user) %></pre>
             <% Object.keys(sessions).forEach(function (session) { %>
                 <tr>
                     <td class="w-10" style="vertical-align: middle;">
                         <%= session %>
                     </td>
                     <td style="vertical-align: middle;">
-                        <%= JSON.stringify(sessions[session].passport.user) %>
                     </td>
                     <pre><%= sessions[session].passport %></pre>
                     <% if (sessions[session].passport.user === user.id && user.role === "admin") { %>
