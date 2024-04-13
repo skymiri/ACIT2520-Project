@@ -18,8 +18,8 @@
                         <%= session %>
                     </td>
                     <td style="vertical-align: middle;">
+                         <%= sessions[session].passport.user %>
                     </td>
-                    <pre><%= sessions[session].passport %></pre>
                     <% if (sessions[session].passport.user === user.id && user.role === "admin") { %>
                         <td style="vertical-align: middle;">
                             <span>Administrator</span>
