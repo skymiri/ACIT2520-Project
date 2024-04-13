@@ -23,7 +23,7 @@
                         <%= JSON.stringify(sessions[session].passport.user) %>
                     </td>
                     <pre><%= sessions[session].passport %></pre>
-                    <% if (sessions[session].passport.user=="1" ) { %>
+                    <% if (sessions[session].passport.user === user.id && user.role === "admin") { %>
                         <td style="vertical-align: middle;">
                             <span>Administrator</span>
                         </td>
