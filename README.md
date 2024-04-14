@@ -23,7 +23,7 @@ email: cindy123@gmail.com / password: cindy123!
 
 ## Additional Tasks
 
-➕ Add Register functionaity <br>
+➕ Add registration function <br>
 
 <!-- ➕ Edit Testimonials from Users in Database <br>
 ➕ Update Reminder View Interface <br> -->
@@ -86,5 +86,5 @@ email: cindy123@gmail.com / password: cindy123!
 #### Yangyi Jung
 
 1. Update Bonus functionality (create a reminder with banner) in `reminder_controller.js`
-2. Implemented register functionality using `fs`
+2. Implemented registration function using `fs`
    - reference : https://www.passportjs.org/tutorials/password/signup/
