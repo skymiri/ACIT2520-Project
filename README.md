@@ -82,6 +82,8 @@ email: cindy123@gmail.com / password: cindy123!
 #### Xinyu Gong
 
 1. upload snippets from class for bonus
+2. watch passport video 2 hours
+3. implement passport to enable other user access
 
 #### Yangyi Jung
 
