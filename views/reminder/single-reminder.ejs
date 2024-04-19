@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="banner"
+    style="height: 200px; background-image: url('<%=reminderItem.banner %>'); background-size: cover; background-position: center;">
+    <h1 class="page-header" style="color:white;">Reminders</h1>
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h3><strong>
+          <%= reminderItem.title %>:
+        </strong></h3>
+      <h4>
+        <%= reminderItem.description %>
+      </h4>
+      <h4>Completed:
+        <% if (reminderItem.completed==true) { %>
+          <span class="label label-success">True</span>
+          <% } else if (reminderItem.completed==false) { %>
+            <span class="label label-danger">False</span>
+            <% } %>
+      </h4>
+
+      <a class="btn btn-warning" href=<%="/reminder/" + reminderItem.id + "/edit" %>>Edit</a>
+
+      <form class="deleteForm " method="POST" action=<%="/reminder/delete/" + reminderItem.id %>>
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">Delete</button>
+      </form>
+
+    </li>
+  </ul>
+
+</div>

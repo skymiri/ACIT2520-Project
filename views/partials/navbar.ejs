@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <% if (!isAuthenticated) { %>
+    <a class="navbar-brand" href="/reminder/home">Remindly</a>
+    <% } else { %>
+      <a class="navbar-brand" href="/">Remindly</a>
+      <% } %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <% if (!isAuthenticated) { %>
+              <li class="nav-item"><a class="nav-link" href="/reminder">Reminder List</a></li>
+              <li class="nav-item"><a class="nav-link" href="/reminder/new">Create</a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="/auth/logout">Logout</a></li>
+              <% } else { %>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="/auth/login">Sign In</a>
+                </li>
+                <% } %>
+          </div>
+        </div>
+</nav>
